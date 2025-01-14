@@ -62,7 +62,13 @@ def lambda_handler(event, context):
     
     authResponse = policy.build()
  
-    # TODO: Add tenant context to authResponse
+    #Add tenant context to authResponse
+    context = {
+        'userName': user_name,
+        'tenantId': tenant_id        
+    }
+
+    authResponse['context'] = context
     
     return authResponse
 
